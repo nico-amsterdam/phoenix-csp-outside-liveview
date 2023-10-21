@@ -23,8 +23,9 @@
              <%= copy_to_id_script(:user, :country, "capital", "#awe-capital", [nonce: @script_src_nonce]) %>
              <%= copy_to_field_script(:user, :country, "capital", :user, :capital, [nonce: @script_src_nonce]) %>
 
-             <%= awesomplete(:user, :country, 
-                             [class: "form-control"], 
+             <.input class="form-control" id="user_country" name="user[country]" type="text" value="" />
+
+             <%= awesomplete_script(:user, :country,
                             %{ url: "https://restcountries.com/v2/all", 
                                loadall: true, 
                                prepop: true,
@@ -32,7 +33,7 @@
                                maxItems: 8, 
                                value: "name",
                                csp_nonce: @script_src_nonce
-                             }) %>
+                            }) %>
 
         </div>
         <div class="mt-10 grid grid-cols-1 gap-y-4 text-sm leading-6 text-zinc-700 sm:grid-cols-2">
