@@ -7,7 +7,7 @@ defmodule HelloWorldWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_hello_world_key",
-    signing_salt: "H+Sj0End",
+    signing_salt: "S7x7XcGc",
     same_site: "Lax"
   ]
 
@@ -43,6 +43,10 @@ defmodule HelloWorldWeb.Endpoint do
     parsers: [:urlencoded, :multipart, :json],
     pass: ["*/*"],
     json_decoder: Phoenix.json_library()
+
+  plug PlugContentSecurityPolicy,
+    nonces_for: [:script_src],
+    directives: %{style_src: ~w('self' 'unsafe-inline' http://nico-amsterdam.github.io/awesomplete-util/css/awesomplete.css), script_src: ~w('self' http://nico-amsterdam.github.io/awesomplete-util/js/awesomplete-v2020.min.js http://nico-amsterdam.github.io/awesomplete-util/js/awesomplete-util.min.js)}
 
   plug Plug.MethodOverride
   plug Plug.Head

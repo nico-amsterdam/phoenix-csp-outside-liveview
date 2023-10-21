@@ -87,6 +87,9 @@ defmodule HelloWorldWeb do
       import HelloWorldWeb.CoreComponents
       import HelloWorldWeb.Gettext
 
+      # Awesomplete autocomplete widget
+      import PhoenixFormAwesomplete
+
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS
 
