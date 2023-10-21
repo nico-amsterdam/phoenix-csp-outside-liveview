@@ -20,8 +20,8 @@
         <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-3">
 
              <label for="user_country" class="control-label">Country</label>
-             <%= copy_to_id_script(@script_src_nonce, :user, :country, "capital", "#awe-capital") %>
-             <%= copy_to_field_script(@script_src_nonce, :user, :country, "capital", :user, :capital) %>
+             <%= copy_to_id_script(:user, :country, "capital", "#awe-capital", [nonce: @script_src_nonce]) %>
+             <%= copy_to_field_script(:user, :country, "capital", :user, :capital, [nonce: @script_src_nonce]) %>
 
              <%= awesomplete(:user, :country, 
                              [class: "form-control"], 
