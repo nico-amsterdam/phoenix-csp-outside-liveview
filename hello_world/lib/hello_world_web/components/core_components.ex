@@ -18,6 +18,7 @@ defmodule HelloWorldWeb.CoreComponents do
 
   alias Phoenix.LiveView.JS
   import HelloWorldWeb.Gettext
+  import PhoenixFormAwesomplete
 
   @doc """
   Renders a modal.
@@ -131,6 +132,18 @@ defmodule HelloWorldWeb.CoreComponents do
         <.icon name="hero-x-mark-solid" class="h-5 w-5 opacity-40 group-hover:opacity-70" />
       </button>
     </div>
+    """
+  end
+
+  # def awesomplete_script(%Phoenix.HTML.FormField{} = _field, opts) do
+  #    <%= Phoenix.HTML.raw(inspect assigns.opts) %>
+
+  def autocomplete(%{for_form: form, for_field: field} = assigns) do
+    assigns = assign(assigns, :for_form, String.to_atom(form))
+    assigns = assign(assigns, :for_field, String.to_atom(field))
+    assigns = assign(assigns, :opts, Map.drop(assigns, [:for_form, :for_field, :__changed__]))
+    ~H"""
+    <%= awesomplete_script(@for_form, @for_field, @opts) %>
     """
   end
 

@@ -22,15 +22,16 @@
              <label for="user_country" class="control-label">Country</label>
              <.input class="form-control" id="user_country" name="user[country]" type="text" value="" />
 
-             <%= awesomplete_script(:user, :country,
-                            %{ url: "https://restcountries.com/v2/all", 
-                               loadall: true, 
-                               prepop: true,
-                               minChars: 0, 
-                               maxItems: 8, 
-                               value: "name",
-                               csp_nonce: @script_src_nonce
-                            }) %>
+             <.autocomplete  for_form="user"
+                             for_field="country"
+                             url="https://restcountries.com/v2/all"
+                             loadall="true"
+                             prepop="true"
+                             minChars="0" 
+                             maxItems="8" 
+                             value="name"
+                             csp_nonce={@script_src_nonce}
+                             />
 
              <%= copy_to_id_script(:user, :country, "capital", "#awe-capital", [nonce: @script_src_nonce]) %>
              <%= copy_to_field_script(:user, :country, "capital", :user, :capital, [nonce: @script_src_nonce]) %>
