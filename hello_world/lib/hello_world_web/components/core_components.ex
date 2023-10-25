@@ -138,14 +138,32 @@ defmodule HelloWorldWeb.CoreComponents do
   # def awesomplete_script(%Phoenix.HTML.FormField{} = _field, opts) do
   #    <%= Phoenix.HTML.raw(inspect assigns.opts) %>
 
-  def autocomplete(%{for_form: form, for_field: field} = assigns) do
-    assigns = assign(assigns, :for_form, String.to_atom(form))
-    assigns = assign(assigns, :for_field, String.to_atom(field))
-    assigns = assign(assigns, :opts, Map.drop(assigns, [:for_form, :for_field, :__changed__]))
+  attr :for_form, :any, default: nil, doc: "Phoenix.HTML.Form struct or form name."
+  attr :for_field, :any, required: true, doc: "Phoenix.HTML.FormField struct or field name."
+  attr :rest, :global,
+    include: ~w(nonce loadall maxItems minChars prepop url value),
+    doc: "the options for awesomplete_script."
+  def autocomplete(%{for_field: %Phoenix.HTML.FormField{}} = assigns) do
     ~H"""
-    <%= awesomplete_script(@for_form, @for_field, @opts) %>
+    attr 1. <%= Phoenix.HTML.raw(inspect @rest) %>
+    <%= awesomplete_script(@for_field, @rest) %>
     """
   end
+
+  def autocomplete(%{for_form: form, for_field: field} = assigns) do
+    assigns = case form do
+       %Phoenix.HTML.Form{} -> assigns
+       nil -> assigns
+       _   -> assign(assigns, :for_form, String.to_atom(form))
+    end
+    assigns = assign(assigns, :for_field, String.to_atom(field))
+    ~H"""
+    attr 2. <%= Phoenix.HTML.raw(inspect @rest) %>
+    <%= awesomplete_script(@for_form, @for_field, @rest) %>
+    """
+  end
+
+
 
   @doc """
   Shows the flash group with standard titles and content.

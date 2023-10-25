@@ -30,7 +30,7 @@
                              minChars="0" 
                              maxItems="8" 
                              value="name"
-                             csp_nonce={@script_src_nonce}
+                             nonce={@script_src_nonce}
                              />
 
              <%= copy_to_id_script(:user, :country, "capital", "#awe-capital", [nonce: @script_src_nonce]) %>
