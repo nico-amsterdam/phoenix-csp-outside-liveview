@@ -5,6 +5,17 @@
   <.input field={f[:title]} type="text" label="Title" />
   <.input field={f[:views]} type="number" label="Views" />
   <.input field={f[:country]} type="text" label="Country" />
+  <.autocomplete   for_field={f[:country]}
+                    url="https://restcountries.com/v2/all"
+                    loadall="true"
+                    prepop="true"
+                    minChars="0" 
+                    maxItems="8" 
+                    value="name"
+                    nonce={@script_src_nonce}
+                    />
+
+
   <:actions>
     <.button>Save Post</.button>
   </:actions>

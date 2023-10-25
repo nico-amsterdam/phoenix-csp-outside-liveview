@@ -15,6 +15,10 @@
     <p>
       script nonce is: <%= raw(inspect assigns.script_src_nonce) %>
     </p>
+     <.link href={~p"/posts"}>
+      <.button>Go to Posts</.button>
+    </.link>
+   
     <div class="flex">
       <div class="w-full sm:w-auto">
         <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-3">
