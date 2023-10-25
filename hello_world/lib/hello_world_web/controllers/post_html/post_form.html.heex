@@ -14,6 +14,13 @@
                     value="name"
                     nonce={@script_src_nonce}
                     />
+  <.input field={f[:capital]} type="text" label="Capital" readonly />
+  <.copy_value_to_field
+      field={f[:country]}
+      dataField="capital"
+      target={f[:capital]}
+      nonce={@script_src_nonce}
+      />
 
 
   <:actions>

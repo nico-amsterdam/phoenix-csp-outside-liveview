@@ -18,7 +18,7 @@ defmodule HelloWorldWeb.CoreComponents do
 
   alias Phoenix.LiveView.JS
   import HelloWorldWeb.Gettext
-  import PhoenixFormAwesomplete
+  # import PhoenixFormAwesomplete
 
   @doc """
   Renders a modal.
@@ -135,9 +135,6 @@ defmodule HelloWorldWeb.CoreComponents do
     """
   end
 
-  # def awesomplete_script(%Phoenix.HTML.FormField{} = _field, opts) do
-  #    <%= Phoenix.HTML.raw(inspect assigns.opts) %>
-
   attr :for_form, :any, default: nil, doc: "Phoenix.HTML.Form struct or form name."
   attr :for_field, :any, required: true, doc: "Phoenix.HTML.FormField struct or field name."
   attr :rest, :global,
@@ -145,8 +142,7 @@ defmodule HelloWorldWeb.CoreComponents do
     doc: "the options for awesomplete_script."
   def autocomplete(%{for_field: %Phoenix.HTML.FormField{}} = assigns) do
     ~H"""
-    attr 1. <%= Phoenix.HTML.raw(inspect @rest) %>
-    <%= awesomplete_script(@for_field, @rest) %>
+    <%= PhoenixFormAwesomplete.awesomplete_script(@for_field, @rest) %>
     """
   end
 
@@ -154,16 +150,52 @@ defmodule HelloWorldWeb.CoreComponents do
     assigns = case form do
        %Phoenix.HTML.Form{} -> assigns
        nil -> assigns
-       _   -> assign(assigns, :for_form, String.to_atom(form))
+       _   -> assign(assigns, :for_form, String.to_existing_atom(form))
     end
-    assigns = assign(assigns, :for_field, String.to_atom(field))
+    assigns = assign(assigns, :for_field, String.to_existing_atom(field))
     ~H"""
-    attr 2. <%= Phoenix.HTML.raw(inspect @rest) %>
-    <%= awesomplete_script(@for_form, @for_field, @rest) %>
+    <%= PhoenixFormAwesomplete.awesomplete_script(@for_form, @for_field, @rest) %>
     """
   end
 
+  attr :form, :any, default: nil, doc: "Phoenix.HTML.Form struct or form name."
+  attr :field, :any, required: true, doc: "Phoenix.HTML.FormField struct or field name."
+  attr :dataField, :string, default: nil, doc: "Optional, dataField to be copied, for example: capital"
+  attr :target, :string, doc: "css selector, for example: #capital"
+  attr :rest, :global,
+    include: ~w(nonce),
+    doc: "script attributes."
+  def copy_value_to_id(%{field: %Phoenix.HTML.FormField{}} = assigns) do
+    ~H"""
+    <%= PhoenixFormAwesomplete.copy_value_to_id_script(@field, @dataField, @target, @rest) %>
+    """
+  end
 
+  def copy_value_to_id(%{form: form, field: field} = assigns) do
+    assigns = case form do
+       %Phoenix.HTML.Form{} -> assigns
+       nil -> assigns
+       _   -> assign(assigns, :form, String.to_existing_atom(form))
+    end
+    assigns = assign(assigns, :field, String.to_existing_atom(field))
+    ~H"""
+    <%= PhoenixFormAwesomplete.copy_to_id_script(@form, @field, @dataField, @target, @rest) %>
+    """
+  end
+
+  attr :field, Phoenix.HTML.FormField, required: true,
+    doc: "a form field struct retrieved from the form, for example: @f[:country]"
+  attr :target, Phoenix.HTML.FormField, required: true,
+    doc: "a form field struct retrieved from the form, for example: @f[:capital]"
+  attr :dataField, :string, default: nil, doc: "Optional, dataField to be copied, for example: capital"
+  attr :rest, :global,
+    include: ~w(nonce),
+    doc: "script attributes."
+  def copy_value_to_field(%{field: %Phoenix.HTML.FormField{}, target: %Phoenix.HTML.FormField{}} = assigns) do
+    ~H"""
+    <%= PhoenixFormAwesomplete.copy_value_to_field_script(@field, @dataField, @target, @rest) %>
+    """
+  end
 
   @doc """
   Shows the flash group with standard titles and content.

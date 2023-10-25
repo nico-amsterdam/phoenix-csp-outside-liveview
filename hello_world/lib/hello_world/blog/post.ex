@@ -6,6 +6,7 @@ defmodule HelloWorld.Blog.Post do
     field :country, :string
     field :title, :string
     field :views, :integer
+    field :capital, :string, virtual: true
 
     timestamps(type: :utc_datetime)
   end

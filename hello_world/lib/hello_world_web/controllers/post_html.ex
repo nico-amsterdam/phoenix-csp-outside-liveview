@@ -8,6 +8,7 @@ defmodule HelloWorldWeb.PostHTML do
   """
   attr :changeset, Ecto.Changeset, required: true
   attr :action, :string, required: true
+  attr :script_src_nonce, :string
 
   def post_form(assigns)
 end

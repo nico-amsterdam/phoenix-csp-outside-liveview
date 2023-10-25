@@ -12,9 +12,6 @@
     <p class="mt-4 text-base leading-7 text-zinc-600">
       Awesomplete test
     </p>
-    <p>
-      script nonce is: <%= raw(inspect assigns.script_src_nonce) %>
-    </p>
      <.link href={~p"/posts"}>
       <.button>Go to Posts</.button>
     </.link>
@@ -37,10 +34,15 @@
                              nonce={@script_src_nonce}
                              />
 
-             <%= copy_to_id_script(:user, :country, "capital", "#awe-capital", [nonce: @script_src_nonce]) %>
-             <%= copy_to_field_script(:user, :country, "capital", :user, :capital, [nonce: @script_src_nonce]) %>
+             <.copy_value_to_id
+                 form="user"
+                 field="country"
+                 dataField="capital"
+                 target="#awe-capital"
+                 nonce={@script_src_nonce}
+                 />
 
-            <!-- %= script("alert('hai there')", [id: "ab123", nonce: @script_src_nonce, "aria-hidden": nil]) % -->
+             <%= copy_to_field_script(:user, :country, "capital", :user, :capital, [nonce: @script_src_nonce]) %>
 
         </div>
         <div class="mt-10 grid grid-cols-1 gap-y-4 text-sm leading-6 text-zinc-700 sm:grid-cols-2">
