@@ -3,6 +3,7 @@ defmodule HelloWorld.Blog.Post do
   import Ecto.Changeset
 
   schema "posts" do
+    field :country, :string
     field :title, :string
     field :views, :integer
 
@@ -12,7 +13,7 @@ defmodule HelloWorld.Blog.Post do
   @doc false
   def changeset(post, attrs) do
     post
-    |> cast(attrs, [:title, :views])
-    |> validate_required([:title, :views])
+    |> cast(attrs, [:title, :views, :country])
+    |> validate_required([:title, :views, :country])
   end
 end

@@ -3,9 +3,9 @@ defmodule HelloWorldWeb.PostControllerTest do
 
   import HelloWorld.BlogFixtures
 
-  @create_attrs %{title: "some title", views: 42}
-  @update_attrs %{title: "some updated title", views: 43}
-  @invalid_attrs %{title: nil, views: nil}
+  @create_attrs %{country: "some country", title: "some title", views: 42}
+  @update_attrs %{country: "some updated country", title: "some updated title", views: 43}
+  @invalid_attrs %{country: nil, title: nil, views: nil}
 
   describe "index" do
     test "lists all posts", %{conn: conn} do
@@ -55,7 +55,7 @@ defmodule HelloWorldWeb.PostControllerTest do
       assert redirected_to(conn) == ~p"/posts/#{post}"
 
       conn = get(conn, ~p"/posts/#{post}")
-      assert html_response(conn, 200) =~ "some updated title"
+      assert html_response(conn, 200) =~ "some updated country"
     end
 
     test "renders errors when data is invalid", %{conn: conn, post: post} do
