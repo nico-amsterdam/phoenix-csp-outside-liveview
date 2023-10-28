@@ -676,20 +676,20 @@ defmodule HelloWorldWeb.CoreComponents do
   @doc """
   Wrapper for PhoenixFormAwesomplete.awesomplete_script.
   """
-  attr :for_form, :any, default: nil, doc: "Phoenix.HTML.Form struct or form name."
-  attr :for_field, :any, required: true, doc: "Phoenix.HTML.FormField struct or field name."
+  attr :forForm, :any, default: nil, doc: "Phoenix.HTML.Form struct or form name."
+  attr :forField, :any, required: true, doc: "Phoenix.HTML.FormField struct or field name."
   attr :rest, :global,
     include: ~w(ajax assign autoFirst combobox convertInput convertResponse data descr descrSearch filter id item label list loadall limit maxItems minChars multiple nonce prepop replace sort url urlEnd value),
     doc: "the options for awesomplete_script."
-  def autocomplete(%{for_field: %Phoenix.HTML.FormField{}} = assigns) do
+  def autocomplete(%{forField: %Phoenix.HTML.FormField{}} = assigns) do
     ~H"""
-    <%= PhoenixFormAwesomplete.awesomplete_script(@for_field, @rest) %>
+    <%= PhoenixFormAwesomplete.awesomplete_script(@forField, @rest) %>
     """
   end
 
-  def autocomplete(%{for_form: _form, for_field: _field} = assigns) do
+  def autocomplete(%{forForm: _form, forField: _field} = assigns) do
     ~H"""
-    <%= PhoenixFormAwesomplete.awesomplete_script(@for_form, @for_field, @rest) %>
+    <%= PhoenixFormAwesomplete.awesomplete_script(@forForm, @forField, @rest) %>
     """
   end
 
@@ -718,17 +718,17 @@ defmodule HelloWorldWeb.CoreComponents do
   @doc """
   Wrapper for PhoenixFormAwesomplete.copy_value_to_field.
   """
-  attr :field, Phoenix.HTML.FormField, required: true,
+  attr :sourceField, Phoenix.HTML.FormField, required: true,
     doc: "a form field struct retrieved from the form, for example: @f[:country]"
-  attr :target, Phoenix.HTML.FormField, required: true,
+  attr :targetField, Phoenix.HTML.FormField, required: true,
     doc: "a form field struct retrieved from the form, for example: @f[:capital]"
   attr :dataField, :string, default: nil, doc: "Optional, dataField to be copied, for example: capital"
   attr :rest, :global,
     include: ~w(id nonce),
     doc: "script attributes."
-  def copy_value_to_field(%{field: %Phoenix.HTML.FormField{}, target: %Phoenix.HTML.FormField{}} = assigns) do
+  def copy_value_to_field(%{sourceField: %Phoenix.HTML.FormField{}, targetField: %Phoenix.HTML.FormField{}} = assigns) do
     ~H"""
-    <%= PhoenixFormAwesomplete.copy_value_to_field_script(@field, @dataField, @target, @rest) %>
+    <%= PhoenixFormAwesomplete.copy_value_to_field_script(@sourceField, @dataField, @targetField, @rest) %>
     """
   end
 

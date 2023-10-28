@@ -5,7 +5,7 @@
   <.input field={f[:title]} type="text" label="Title" />
   <.input field={f[:views]} type="number" label="Views" />
   <.input field={f[:country]} type="text" label="Country" />
-  <.autocomplete   for_field={f[:country]}
+  <.autocomplete    forField={f[:country]}
                     url="https://restcountries.com/v2/all"
                     loadall="true"
                     prepop="true"
@@ -16,9 +16,9 @@
                     />
   <.input field={f[:capital]} type="text" label="Capital" readonly />
   <.copy_value_to_field
-      field={f[:country]}
+      sourceField={f[:country]}
       dataField="capital"
-      target={f[:capital]}
+      targetField={f[:capital]}
       nonce={@script_src_nonce}
       />
 
