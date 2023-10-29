@@ -676,8 +676,8 @@ defmodule HelloWorldWeb.CoreComponents do
   @doc """
   Wrapper for PhoenixFormAwesomplete.awesomplete_script.
   """
-  attr :forForm, :any, default: nil, doc: "Phoenix.HTML.Form struct or form name."
   attr :forField, :any, required: true, doc: "Phoenix.HTML.FormField struct or field name."
+  attr :forForm, :any, default: nil, doc: "Phoenix.HTML.Form struct or form name. Not needed when FormField is used."
   attr :rest, :global,
     include: ~w(ajax assign autoFirst combobox convertInput convertResponse data descr descrSearch filter item label list loadall limit maxItems minChars multiple prepop replace sort url urlEnd value),
     doc: "the options for awesomplete_script."
@@ -696,8 +696,8 @@ defmodule HelloWorldWeb.CoreComponents do
   @doc """
   Wrapper for PhoenixFormAwesomplete.copy_value_to_id.
   """
-  attr :form, :any, default: nil, doc: "Phoenix.HTML.Form struct or form name."
   attr :field, :any, required: true, doc: "Phoenix.HTML.FormField struct or field name."
+  attr :form, :any, default: nil, doc: "Phoenix.HTML.Form struct or form name. Not needed when FormField is used."
   attr :dataField, :string, default: nil, doc: "Optional, dataField to be copied, for example: capital"
   attr :target, :string, doc: "css selector, for example: #capital"
   attr :rest, :global, doc: "script attributes."
