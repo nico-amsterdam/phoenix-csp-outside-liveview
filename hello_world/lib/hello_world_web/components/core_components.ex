@@ -19,7 +19,7 @@ defmodule HelloWorldWeb.CoreComponents do
   alias Phoenix.LiveView.JS
   import HelloWorldWeb.Gettext
   
-  @awesomplete HelloWorldWeb.AwesompleteComponent
+  @awesomplete HelloWorldWeb.AwesompleteScriptComponents
 
   defdelegate autocomplete(assigns), to: @awesomplete
   defdelegate copy_value_to_id(assigns), to: @awesomplete

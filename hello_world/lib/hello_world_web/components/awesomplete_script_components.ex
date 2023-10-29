@@ -1,4 +1,4 @@
-defmodule HelloWorldWeb.AwesompleteComponent do
+defmodule HelloWorldWeb.AwesompleteScriptComponents do
   @moduledoc """
   Provides function components for the Awesomplete component,
   which provides autocomplete functionality.
