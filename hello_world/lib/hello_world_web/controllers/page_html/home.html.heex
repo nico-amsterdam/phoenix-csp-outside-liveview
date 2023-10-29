@@ -22,6 +22,12 @@
 
              <label for="user_country" class="control-label">Country</label>
              <.input class="form-control" id="user_country" name="user[country]" type="text" value="" />
+            <span class="input-group-btn">
+              <.button  class="dropdown-btn" id="awe_btn_user_country" type="button" tabindex="-1">
+                  &#9660;
+              </.button>
+            </span>
+
 
              <.autocomplete  forForm="user"
                              forField="country"
@@ -29,8 +35,9 @@
                              loadall="true"
                              prepop="true"
                              minChars="0" 
-                             maxItems="8" 
+                             maxItems="8"
                              value="name"
+                             combobox="true"
                              nonce={@script_src_nonce}
                              />
 
@@ -44,7 +51,10 @@
 
              <%= copy_to_field_script(:user, :country, "capital", :user, :capital, [nonce: @script_src_nonce]) %>
 
+ 
         </div>
+ 
+
         <div class="mt-10 grid grid-cols-1 gap-y-4 text-sm leading-6 text-zinc-700 sm:grid-cols-2">
 
             <label for="user_capital">Capital (readonly output)</label>
