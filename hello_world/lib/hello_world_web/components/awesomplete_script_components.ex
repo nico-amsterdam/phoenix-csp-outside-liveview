@@ -1,13 +1,11 @@
 defmodule HelloWorldWeb.AwesompleteScriptComponents do
+
   @moduledoc """
   Provides function components for the Awesomplete component,
   which provides autocomplete functionality.
   """
+
   use Phoenix.Component
-
-  # alias Phoenix.LiveView.JS
-  # import HelloWorldWeb.Gettext
-
 
   @doc """
   Wrapper for PhoenixFormAwesomplete.awesomplete_script.
@@ -53,9 +51,9 @@ defmodule HelloWorldWeb.AwesompleteScriptComponents do
   Wrapper for PhoenixFormAwesomplete.copy_value_to_field.
   """
   attr :sourceField, Phoenix.HTML.FormField, required: true,
-    doc: "a form field struct retrieved from the form, for example: @f[:country]"
+    doc: "a Phoenix.HTML.FormField struct retrieved from the form, for example: @f[:country]"
   attr :targetField, Phoenix.HTML.FormField, required: true,
-    doc: "a form field struct retrieved from the form, for example: @f[:capital]"
+    doc: "a Phoenix.HTML.FormField struct retrieved from the form, for example: @f[:capital]"
   attr :dataField, :string, default: nil, doc: "Optional, dataField to be copied, for example: capital"
   attr :rest, :global, doc: "script attributes."
   def copy_value_to_field(%{sourceField: %Phoenix.HTML.FormField{}, targetField: %Phoenix.HTML.FormField{}} = assigns) do
@@ -63,6 +61,5 @@ defmodule HelloWorldWeb.AwesompleteScriptComponents do
     <%= PhoenixFormAwesomplete.copy_value_to_field_script(@sourceField, @dataField, @targetField, @rest) %>
     """
   end
-
 
 end
