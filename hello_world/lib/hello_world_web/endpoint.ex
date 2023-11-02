@@ -46,7 +46,7 @@ defmodule HelloWorldWeb.Endpoint do
 
   plug PlugContentSecurityPolicy,
     nonces_for: [:script_src],
-    directives: %{style_src: ~w('self' 'unsafe-inline' http://nico-amsterdam.github.io/awesomplete-util/css/awesomplete.css), script_src: ~w('self' http://nico-amsterdam.github.io/awesomplete-util/js/awesomplete-v2020.min.js http://nico-amsterdam.github.io/awesomplete-util/js/awesomplete-util.min.js)}
+    directives: %{style_src: ~w('self' 'unsafe-inline'), script_src: ~w('self')}
 
   plug Plug.MethodOverride
   plug Plug.Head
