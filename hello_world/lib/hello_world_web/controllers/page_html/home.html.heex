@@ -49,7 +49,7 @@
                  nonce={@script_src_nonce}
                  />
 
-             <%= copy_to_field_script(:user, :country, "capital", :user, :capital, [nonce: @script_src_nonce]) %>
+             <%= PhoenixFormAwesomplete.copy_to_field_script(:user, :country, "capital", :user, :capital, [nonce: @script_src_nonce]) %>
 
  
         </div>
