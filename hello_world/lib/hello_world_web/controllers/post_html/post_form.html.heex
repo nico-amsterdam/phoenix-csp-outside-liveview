@@ -4,7 +4,7 @@
   </.error>
   <.input field={f[:title]} type="text" label="Title" />
   <.input field={f[:views]} type="number" label="Views" />
-  <.input field={f[:country]} type="text" label="Country" />
+  <.input field={f[:country]} type="text" label="Country" autocomplete="off" />
   <.autocomplete    forField={f[:country]}
                     url="https://restcountries.com/v2/all"
                     loadall="true"
