@@ -53,6 +53,9 @@ defmodule HelloWorld.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:plug_content_security_policy, "~> 0.1"},
       {:credo,  "~> 1.7"   , only: :dev},
+      {:nimble_csv, "~> 1.2"},
+  #    {:eternal, "~> 1.2"},
+  #    {:simple_mem_cache, "~> 1.0"},
       {:phoenix_form_awesomplete, git: "https://github.com/nico-amsterdam/phoenix_form_awesomplete.git"}
   #    {:phoenix_form_awesomplete, "~> 0.1.7"}
     ]

@@ -14,11 +14,28 @@ defmodule HelloWorldWeb.Router do
     plug :accepts, ["json"]
   end
 
+  defp max_age(conn, max_age) when is_integer(max_age) do
+    Plug.Conn.put_resp_header(conn, "cache-control", "max-age=" <> to_string(max_age))
+  end
+
+  pipeline :api_cached do
+    plug :accepts, ["json"]
+    plug :max_age, 60 * 60 * 12
+  end
+
   scope "/", HelloWorldWeb do
     pipe_through :browser
 
     get "/", PageController, :home
     resources "/posts", PostController
+  end
+
+  scope "/rest/public", HelloWorldWeb do
+    pipe_through :api_cached
+
+    # get "/v1/productcat", JsonProductCategoryController, :index
+
+    resources "/v1/productcat", JsonProductCategoryController, only: [:index]
   end
 
   # Other scopes may use custom stacks.

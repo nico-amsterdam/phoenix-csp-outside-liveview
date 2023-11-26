@@ -37,6 +37,7 @@
                              maxItems="8"
                              value="name"
                              combobox="true"
+                             debounce="5000"
                              nonce={@script_src_nonce}
                              />
 
@@ -52,7 +53,25 @@
 
  
         </div>
- 
+
+        <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2">
+
+             <label for="product_category" class="control-label">Product category</label>
+             <.input class="form-control" id="product_category" name="product[category]" type="text" value="" autocomplete="off"  />
+
+             <.autocomplete  forForm="product"
+                             forField="category"
+                             url="/rest/public/v1/productcat/?search-fields=name,description&contains="
+                             minChars="1" 
+                             maxItems="10"
+                             value="name"
+                             descr="description"
+                             descrSearch="true"
+                             nonce={@script_src_nonce}
+                             />
+
+        </div>
+
 
         <div class="mt-10 grid grid-cols-1 gap-y-4 text-sm leading-6 text-zinc-700 sm:grid-cols-2">
 
